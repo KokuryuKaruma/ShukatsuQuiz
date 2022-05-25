@@ -6,3 +6,5 @@
 #define y2 460
 
 int DrawScreen();
+int O();
+int X();

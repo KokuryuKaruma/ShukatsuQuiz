@@ -11,3 +11,19 @@ int DrawScreen() {
 	return 0;
 
 }
+
+int O() {
+
+	DrawScreen();
+	DrawString(30, 290, "正解！\n\nENTER:解説へ",LineColor);
+
+	return 0;
+}
+
+int X() {
+
+	DrawScreen();
+	DrawString(30, 290, "残念、不正解。\n\nENTER:解説へ",LineColor);
+
+	return 0;
+}

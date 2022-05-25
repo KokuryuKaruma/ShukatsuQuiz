@@ -152,12 +152,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="CreateScreen.cpp" />
+    <ClCompile Include="Mailquestion.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Question.cpp" />
     <ClCompile Include="TitleScreen.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CreateScreen.h" />
+    <ClInclude Include="Mailquestion.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="Question.h" />
     <ClInclude Include="TitleScreen.h" />
