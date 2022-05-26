@@ -15,7 +15,7 @@ int DrawScreen() {
 int O() {
 
 	DrawScreen();
-	DrawString(30, 290, "正解！\n\nENTER:解説へ",LineColor);
+	DrawString(30, 290, "正解です！！\n\nENTER:解説へ",LineColor);
 
 	return 0;
 }
@@ -23,7 +23,7 @@ int O() {
 int X() {
 
 	DrawScreen();
-	DrawString(30, 290, "残念、不正解。\n\nENTER:解説へ",LineColor);
+	DrawString(30, 290, "残念、不正解です……。\n\nENTER:解説へ",LineColor);
 
 	return 0;
 }

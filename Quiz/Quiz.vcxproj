@@ -152,16 +152,20 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="CreateScreen.cpp" />
+    <ClCompile Include="FinishScreen.cpp" />
     <ClCompile Include="Mailquestion.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Question.cpp" />
+    <ClCompile Include="Result.cpp" />
     <ClCompile Include="TitleScreen.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CreateScreen.h" />
+    <ClInclude Include="FinishScreen.h" />
     <ClInclude Include="Mailquestion.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="Question.h" />
+    <ClInclude Include="Result.h" />
     <ClInclude Include="TitleScreen.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

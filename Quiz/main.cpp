@@ -4,6 +4,8 @@
 #include "Question.h"
 #include "TitleScreen.h"
 #include "Mailquestion.h"
+#include "Result.h"
+#include "FinishScreen.h"
 
 /*
 モード番号一覧
@@ -28,8 +30,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	*/
 	static int ModeNumber = 0;
 	static int push = 0;
-	static int MailNumber1 = 0;
-	static int MailNumber2 = 0;
+	static int MailNumber = 0;
 
 	static int Score = 0;
 	SetDrawScreen(DX_SCREEN_BACK);
@@ -53,15 +54,9 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 		switch (ModeNumber) {
 		//タイトル
 		case 0:
-			MailNumber1 = 0;
-			MailNumber2 = 0;
+			Score = 0;
 			Title();
-			if (CheckHitKey(KEY_INPUT_RETURN) == 0) {
-				DrawString(0, 0, "0", GetColor(255,255,255));
-				ModeNumber = 0;
-			}
-			else {
-				DrawString(0, 0, "1", GetColor(255, 255, 255));
+			if (CheckHitKey(KEY_INPUT_RETURN) == 1 && push == 0) {
 				ModeNumber = 1;
 				push = 1;
 			}
@@ -90,21 +85,21 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 		case 3:
 			Mail_page2();
 
-			if (MailNumber1 == 0 && CheckHitKey(KEY_INPUT_RETURN) == 1 && push == 0) {
+			if (MailNumber == 0 && CheckHitKey(KEY_INPUT_RETURN) == 1 && push == 0) {
 				ModeNumber = 100;
 				push = 1;
 			}
-			else if (MailNumber1 == 0 && CheckHitKey(KEY_INPUT_RIGHT) == 1 && push == 0) {
-				MailNumber1 = 1;
+			else if (MailNumber == 0 && CheckHitKey(KEY_INPUT_RIGHT) == 1 && push == 0) {
+				MailNumber = 1;
 				push = 1;
 			}
 
-			if (MailNumber1 == 1 && CheckHitKey(KEY_INPUT_RETURN) == 1 && push == 0) {
+			if (MailNumber == 1 && CheckHitKey(KEY_INPUT_RETURN) == 1 && push == 0) {
 				ModeNumber = 100;
 				push = 1;
 			}
-			else if (MailNumber1 == 1 && CheckHitKey(KEY_INPUT_LEFT) == 1 && push == 0) {
-				MailNumber1 = 0;
+			else if (MailNumber == 1 && CheckHitKey(KEY_INPUT_LEFT) == 1 && push == 0) {
+				MailNumber = 0;
 				push = 1;
 			}
 			break;
@@ -121,63 +116,261 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 		//第二問 問題
 		case 5:
 			Mail_page4();
-			if (MailNumber2 == 0 && CheckHitKey(KEY_INPUT_RETURN) == 1 && push == 0) {
+			if (MailNumber == 0 && CheckHitKey(KEY_INPUT_RETURN) == 1 && push == 0) {
 				ModeNumber = 101;
 				push = 1;
 			}
-			else if (MailNumber2 == 0 && CheckHitKey(KEY_INPUT_RIGHT) == 1 && push == 0) {
-				MailNumber2 = 1;
+			else if (MailNumber == 0 && CheckHitKey(KEY_INPUT_RIGHT) == 1 && push == 0) {
+				MailNumber = 1;
 				push = 1;
 			}
 
-			if (MailNumber2 == 1 && CheckHitKey(KEY_INPUT_RETURN) == 1 && push == 0) {
+			if (MailNumber == 1 && CheckHitKey(KEY_INPUT_RETURN) == 1 && push == 0) {
 				ModeNumber = 101;
 				push = 1;
 			}
-			else if (MailNumber2 == 1 && CheckHitKey(KEY_INPUT_LEFT) == 1 && push == 0) {
-				MailNumber2 = 0;
+			else if (MailNumber == 1 && CheckHitKey(KEY_INPUT_LEFT) == 1 && push == 0) {
+				MailNumber = 0;
 				push = 1;
 			}
 			break;
 
+		//第二問 解説
 		case 6:
 			Mail_page5();
+			if (CheckHitKey(KEY_INPUT_RETURN) == 1 && push == 0) {
+				ModeNumber = 7;
+				push = 1;
+			}
+			break;
+
+		//第三問 問題
+		case 7:
+			Mail_page6();
+			if (MailNumber == 0 && CheckHitKey(KEY_INPUT_RETURN) == 1 && push == 0) {
+				ModeNumber = 102;
+				push = 1;
+			}
+			else if (MailNumber == 0 && CheckHitKey(KEY_INPUT_RIGHT) == 1 && push == 0) {
+				MailNumber = 1;
+				push = 1;
+			}
+
+			if (MailNumber == 1 && CheckHitKey(KEY_INPUT_RETURN) == 1 && push == 0) {
+				ModeNumber = 102;
+				push = 1;
+			}
+			else if (MailNumber == 1 && CheckHitKey(KEY_INPUT_LEFT) == 1 && push == 0) {
+				MailNumber = 0;
+				push = 1;
+			}
+			break;
+
+		//第三問 解説
+		case 8:
+			Mail_page7();
+			if (CheckHitKey(KEY_INPUT_RETURN) == 1 && push == 0) {
+				ModeNumber = 9;
+				push = 1;
+			}
+			break;
+
+		//第四問 問題
+		case 9:
+			Mail_page8();
+			if (MailNumber == 0 && CheckHitKey(KEY_INPUT_RETURN) == 1 && push == 0) {
+				ModeNumber = 103;
+				push = 1;
+			}
+			else if (MailNumber == 0 && CheckHitKey(KEY_INPUT_RIGHT) == 1 && push == 0) {
+				MailNumber = 1;
+				push = 1;
+			}
+
+			if (MailNumber == 1 && CheckHitKey(KEY_INPUT_RETURN) == 1 && push == 0) {
+				ModeNumber = 103;
+				push = 1;
+			}
+			else if (MailNumber == 1 && CheckHitKey(KEY_INPUT_LEFT) == 1 && push == 0) {
+				MailNumber = 0;
+				push = 1;
+			}
+			break;
+
+		//第四問 解説
+		case 10:
+			Mail_page9();
+			if (CheckHitKey(KEY_INPUT_RETURN) == 1 && push == 0) {
+				ModeNumber = 11;
+				push = 1;
+			}
+			break;
+
+		//第五問 問題
+		case 11:
+			Mail_page10();
+			if (MailNumber == 0 && CheckHitKey(KEY_INPUT_RETURN) == 1 && push == 0) {
+				ModeNumber = 104;
+				push = 1;
+			}
+			else if (MailNumber == 0 && CheckHitKey(KEY_INPUT_RIGHT) == 1 && push == 0) {
+				MailNumber = 1;
+				push = 1;
+			}
+
+			if (MailNumber == 1 && CheckHitKey(KEY_INPUT_RETURN) == 1 && push == 0) {
+				ModeNumber = 104;
+				push = 1;
+			}
+			else if (MailNumber == 1 && CheckHitKey(KEY_INPUT_LEFT) == 1 && push == 0) {
+				MailNumber = 0;
+				push = 1;
+			}
+			break;
+
+		//第五問 解説
+		case 12:
+			Mail_page11();
+			if (CheckHitKey(KEY_INPUT_RETURN) == 1 && push == 0) {
+				ModeNumber = 13;
+				push = 1;
+			}
+			break;
+
+		/*ここから下リザルトページ*/
+		case 13:
+			Result_page1();
+			if (CheckHitKey(KEY_INPUT_RETURN) == 1 && push == 0) {
+				ModeNumber = 14;
+				push = 1;
+			}
+			break;
+
+		case 14:
+			Result_page2();
+			if (CheckHitKey(KEY_INPUT_RETURN) == 1 && push == 0) {
+				ModeNumber = 15;
+				push = 1;
+			}
+			break;
+
+		case 15:
+			Result_page3(Score);
+			if (CheckHitKey(KEY_INPUT_RETURN) == 1 && push == 0) {
+				ModeNumber = 16;
+				push = 1;
+			}
+			break;
+
+		case 16:
+			Result_page4(Score);
+			if (CheckHitKey(KEY_INPUT_RETURN) == 1 && push == 0) {
+				ModeNumber = 17;
+				push = 1;
+			}
+			break;
+
+		/*ここまで*/
+
+		//エンディング
+		case 17:
+			Ending();
+			if (CheckHitKey(KEY_INPUT_RETURN) == 1 && push == 0) {
+				ModeNumber = 0;
+				push = 1;
+			}
 			break;
 
 		//第一問 正解判定
 		case 100:
-			if (MailNumber1 == 0) {
+			if (MailNumber == 0) {
 				X();
 				if (CheckHitKey(KEY_INPUT_RETURN) == 1 && push == 0) {
 					ModeNumber = 4;
 					push = 1;
 				}
 			}
-			else if (MailNumber1 == 1) {
+			else if (MailNumber == 1) {
 				O();
 				if (CheckHitKey(KEY_INPUT_RETURN) == 1 && push == 0) {
 					ModeNumber = 4;
 					push = 1;
-					Score += 1;
+					Score += 20;
 				}
 			}
 			break;
 
 		//第二問 正解判定
 		case 101:
-			if (MailNumber2 == 0) {
+			if (MailNumber == 0) {
 				X();
 				if (CheckHitKey(KEY_INPUT_RETURN) == 1 && push == 0) {
 					ModeNumber = 6;
 					push = 1;
 				}
 			}
-			else if (MailNumber2 == 1) {
+			else if (MailNumber == 1) {
 				O();
 				if (CheckHitKey(KEY_INPUT_RETURN) == 1 && push == 0) {
 					ModeNumber = 6;
 					push = 1;
-					Score += 1;
+					Score += 20;
+				}
+			}
+			break;
+
+		//第三問 正解判定
+		case 102:
+			if (MailNumber == 0) {
+				O();
+				if (CheckHitKey(KEY_INPUT_RETURN) == 1 && push == 0) {
+					ModeNumber = 8;
+					push = 1;
+					Score += 20;
+				}
+			}
+			else if (MailNumber == 1) {
+				X();
+				if (CheckHitKey(KEY_INPUT_RETURN) == 1 && push == 0) {
+					ModeNumber = 8;
+					push = 1;
+				}
+			}
+			break;
+
+		//第四問 正解判定
+		case 103:
+			if (MailNumber == 0) {
+				X();
+				if (CheckHitKey(KEY_INPUT_RETURN) == 1 && push == 0) {
+					ModeNumber = 10;
+					push = 1;
+				}
+			}
+			else if (MailNumber == 1) {
+				O();
+				if (CheckHitKey(KEY_INPUT_RETURN) == 1 && push == 0) {
+					ModeNumber = 10;
+					push = 1;
+					Score += 20;
+				}
+			}
+			break;
+
+		case 104:
+			if (MailNumber == 0) {
+				O();
+				if (CheckHitKey(KEY_INPUT_RETURN) == 1 && push == 0) {
+					ModeNumber = 12;
+					push = 1;
+					Score += 20;
+				}
+			}
+			else if (MailNumber == 1) {
+				X();
+				if (CheckHitKey(KEY_INPUT_RETURN) == 1 && push == 0) {
+					ModeNumber = 12;
+					push = 1;
 				}
 			}
 			break;
