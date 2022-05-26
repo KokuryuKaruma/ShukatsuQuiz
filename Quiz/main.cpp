@@ -31,8 +31,13 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	static int ModeNumber = 0;
 	static int push = 0;
 	static int MailNumber = 0;
-
 	static int Score = 0;
+
+	int bgm;
+	bgm = LoadSoundMem("bgm.mp3");
+	PlaySoundMem(bgm, DX_PLAYTYPE_LOOP);
+	ChangeVolumeSoundMem(255 * 45 / 100, bgm);
+
 	SetDrawScreen(DX_SCREEN_BACK);
 
 	/*******************GAME LOOP********************************/
@@ -357,6 +362,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 			}
 			break;
 
+		//第五問 正解判定
 		case 104:
 			if (MailNumber == 0) {
 				O();
@@ -381,6 +387,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	}
 	/*******************GAME LOOP END***************************/
 
+	DeleteSoundMem(bgm);
 	DxLib_End(); // DXライブラリ使用の終了処理
 	return EXIT_SUCCESS; // プログラムの終了 (EXIT_SUCCESS: 0)
 }
